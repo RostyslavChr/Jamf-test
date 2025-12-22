@@ -1,0 +1,23 @@
+on:
+  workflow_dispatch:
+
+jobs:
+  jamf-computers-inventory:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Get Jamf access token
+        run: |
+          TOKEN=$(curl -s -X POST "https://champ.jamfcloud.com/api/v1/oauth/token"             -H "Content-Type: application/x-www-form-urlencoded"             -d "client_id=a57f2d76-2fe8-4dcb-b16b-167b0188312d&client_secret=oQGauVSavopTro5_aVQfIaDXtKmyfA3QRd_XhQ_x7QLg1xCn3pI29uBU0sjVtN51&grant_type=client_credentials"             | jq -r '.access_token')
+
+          echo "TOKEN=$TOKEN" >> $GITHUB_ENV
+
+      - name: Get computers inventory
+        run: |
+          curl -s "https://champ.jamfcloud.com/api/v1/computers-inventory"             -H "Authorization: Bearer $TOKEN"             -H "Accept: application/json"             | jq
