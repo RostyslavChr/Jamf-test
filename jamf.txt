@@ -21,4 +21,6 @@ curl -X GET "https://champ.jamfcloud.com/JSSResource/policies" \
   -H "Authorization: Bearer $TOKEN" \
   -H "Accept: application/json" | jq
 
+/api/v1 = modern API 
 
+/JSSResource = classic API
