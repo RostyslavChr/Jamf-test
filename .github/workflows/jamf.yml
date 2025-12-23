@@ -14,7 +14,7 @@ jobs:
 
       - name: Get Jamf access token
         run: |
-          TOKEN=$(curl -s -X POST "https://champ.jamfcloud.com/api/v1/oauth/token"             -H "Content-Type: application/x-www-form-urlencoded"             -d "client_id=a57f2d76-2fe8-4dcb-b16b-167b0188312d&client_secret=oQGauVSavopTro5_aVQfIaDXtKmyfA3QRd_XhQ_x7QLg1xCn3pI29uBU0sjVtN51&grant_type=client_credentials"             | jq -r '.access_token')
+          TOKEN=$(curl -s -X POST "https://champ.jamfcloud.com/api/v1/oauth/token"             -H "Content-Type: application/x-www-form-urlencoded"             -d "client_id=a57f2d76-2fe8-4dcb-b16b-167b0188312d&client_secret=TZK6joQ9GonI21K5plAiIgamB674lMuJdJcq0FpKXJUO8zNTNHulwPt6DwWgW2C_&grant_type=client_credentials"             | jq -r '.access_token')
 
           echo "TOKEN=$TOKEN" >> $GITHUB_ENV
 
